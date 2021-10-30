@@ -1,0 +1,107 @@
+<!-- Create our own context menu in Html  -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style type="text/css">
+        .context-menu {
+            position: absolute;
+            text-align: center;
+            background: lightgray;
+            border: 1px solid black;
+        }
+
+        .context-menu ul {
+            padding: 0px;
+            margin: 0px;
+            min-width: 150px;
+            list-style: none;
+        }
+
+        .context-menu ul li {
+            padding-bottom: 7px;
+            padding-top: 7px;
+            border: 1px solid black;
+        }
+
+        .context-menu ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .context-menu ul li:hover {
+            background: darkgray;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1 style="text-align: center;">
+        Welcome to GeeksforGeeks.
+    </h1>
+    <h1 style="text-align: center;">
+        Hi, We are creating a
+        custom context menu here.
+    </h1>
+
+    <div id="contextMenu" class="context-menu" style="display:none">
+        <ul>
+            <li><span onclick="reload()">reload</span></li>
+            <li><span onclick="red1()">red</span></li>
+            <li><span onclick="orange()">orange</span></li>
+            <li><span onclick="blue()">blue</span></li>
+            <li><span onclick="green()">green</span></li>
+            <li><span onclick="purple()">purple</span></li>
+
+        </ul>
+    </div>
+    <script>
+        function reload() {
+            location.reload();
+        }
+        function red1() {
+            document.body.style.backgroundColor = 'red';
+        }
+        function orange() {
+            document.body.style.backgroundColor = 'orange';
+        }
+        function blue() {
+            document.body.style.backgroundColor = 'blue';
+        }
+        function green() {
+            document.body.style.backgroundColor = 'green';
+        }
+        function purple() {
+            document.body.style.backgroundColor = 'purple';
+        }
+    </script>
+
+    <script>
+        document.onclick = hideMenu;
+        document.oncontextmenu = rightClick;
+
+        function hideMenu() {
+            document.getElementById(
+                "contextMenu").style.display = "none"
+        }
+
+        function rightClick(e) {
+            e.preventDefault();
+
+            if (document.getElementById(
+                "contextMenu").style.display == "block")
+                hideMenu();
+            else {
+                var menu = document
+                    .getElementById("contextMenu")
+
+                menu.style.display = 'block';
+                menu.style.left = e.pageX + "px";
+                menu.style.top = e.pageY + "px";
+            }
+        }
+    </script>
+</body>
+
+</html>
